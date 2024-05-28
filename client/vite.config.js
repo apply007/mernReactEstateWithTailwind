@@ -13,4 +13,12 @@ export default defineConfig({
     }
   },
   plugins: [react()],
+  resolve: {
+    alias: {
+      'buffer': 'buffer',
+    },
+  },
+  optimizeDeps: {
+    include: ['buffer'],
+  },
 })
