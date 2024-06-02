@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {Link} from 'react-router-dom'
 // redux
 import { useSelector, useDispatch } from "react-redux";
 import { useRef } from "react";
@@ -190,6 +191,9 @@ export default function Profile() {
         >
           {loading ? "Loading..." : "Update"}
         </button>
+
+<Link className="text-white bg-green-700 p-3 rounded-lg flex justify-center font-semibold text-lg uppercase opacity-80 hover:opacity-95" to={"/create-listing"}>Create Listing</Link>
+
       </form>
       <div className="flex justify-between mt-5">
         <span
