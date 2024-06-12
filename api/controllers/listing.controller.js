@@ -4,7 +4,7 @@ import { errorHandler } from "../utils/error.js";
 export const createListing = async (req, res, next) => {
   try {
     const listings = await Listing.create(req.body);
-    console.log(req.body);
+
     return res.status(201).json(listings);
   } catch (error) {
     next(error);
@@ -15,7 +15,7 @@ export const createListing = async (req, res, next) => {
 export const deleteListing = async (req, res, next) => {
   try {
     const listings = await Listing.findById(req.params.id);
-    console.log(req);
+   
     if (!listings) {
       return next(errorHandler(404, "listings not found"));
     }
@@ -36,7 +36,7 @@ export const deleteListing = async (req, res, next) => {
  export const updateListing = async (req, res, next) => {
     try {
       const listings = await Listing.findById(req.params.id);
-      console.log(req);
+
       if (!listings) {
         return next(errorHandler(404, "listings not found"));
       }
@@ -50,6 +50,21 @@ export const deleteListing = async (req, res, next) => {
         {new:true}
     );
       res.status(200).json(updatedListings);
+    } catch (error) { 
+      next(error);
+    }
+  };
+ // get listing
+ export const getListing = async (req, res, next) => {
+    try {
+      const listings = await Listing.findById(req.params.id);
+    
+      if (!listings) {
+        return next(errorHandler(404, "listings not found"));
+      }
+
+    
+      res.status(200).json(listings);
     } catch (error) { 
       next(error);
     }

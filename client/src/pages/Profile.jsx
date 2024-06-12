@@ -34,7 +34,11 @@ export default function Profile() {
   const [userListings, setUserListings] = useState([]);
   const fileRef = useRef(null);
   const dispatch = useDispatch();
-  console.log(userListings);
+
+  
+
+ // console.log(userListings);
+
   // Code for firebase storage
   // allow read
   // allow write: if
@@ -289,7 +293,10 @@ setUserListings((prev)=>prev.filter((listing)=>listing._id!==listingId))
 
             <div className="flex flex-col it">
               <button onClick={()=>handleListingDelete(listing._id)} className="text-red-700 uppercase">Delete</button>
-              <button className="text-green-700 uppercase">Edit</button>
+              
+            <Link to={`/update-listing/${listing._id}`}>   <button className="text-green-700 uppercase">Edit</button></Link>
+           
+            
             </div>
           </div>
         ))}
