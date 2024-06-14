@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 import { FaBed, FaBath, FaParking, FaChair } from "react-icons/fa";
 import "swiper/css/bundle";
+import Contact from "../components/Contact";
 
 export default function Listing() {
   SwiperCore.use(Navigation);
@@ -17,7 +18,7 @@ export default function Listing() {
   const [contact, setContact] = useState(false);
 
   const { currentUser } = useSelector((state) => state.user);
-
+  // console.log(currentUser._id,listing?.userRef)
   useEffect(() => {
     const fetchListings = async () => {
       try {
@@ -99,11 +100,13 @@ export default function Listing() {
           <div className="flex flex-wrap justify-items-center p-5">
             <p className="text-slate-700">
               {" "}
-          <span className="font-semibold text-black"><b>Description - </b>
-              {listing.description} Lorem ipsum dolor sit amet consectetur,
-              adipisicing elit. Illum nisi voluptas, rerum dicta reprehenderit
-              nihil totam! Molestias eius id fugiat enim, qui explicabo
-              incidunt. Beatae iusto aspernatur ullam magni vitae!</span>    
+              <span className="font-semibold text-black">
+                <b>Description - </b>
+                {listing.description} Lorem ipsum dolor sit amet consectetur,
+                adipisicing elit. Illum nisi voluptas, rerum dicta reprehenderit
+                nihil totam! Molestias eius id fugiat enim, qui explicabo
+                incidunt. Beatae iusto aspernatur ullam magni vitae!
+              </span>
             </p>
 
             <ul className="flex flex-wrap text-green-700 text-sm font-semibold gap-4 sm:gap-6">
@@ -129,14 +132,14 @@ export default function Listing() {
               </li>
             </ul>
           </div>
-          {/* {currentUser && listing.userRef !== currentUser._id && !contact && (
+          {currentUser && listing.userRef !== currentUser._id && !contact && (
             <button
               onClick={() => setContact(true)}
               className="uppercase flex justify-center border p-2 sm:w-[50%] ml-28 sm:ml-72 font-semibold italic hover:opacity-80 rounded-lg text-white bg-slate-700 items-center"
             >
               Contact LandLord
             </button>
-          )} */}
+          )}
 
           {contact && <Contact listing={listing} />}
         </>
